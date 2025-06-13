@@ -1,3 +1,61 @@
+.busqueda-container {
+    width: 100vw;
+    display: flex;
+    flex-direction: column; /* Para apilar elementos verticalmente */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center;
+    
+    
+}
+
+.busqueda {
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-bottom: 2em;
+}
+
+.filtros {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center;
+    gap: 10em;
+    /* border: 2px solid white; */
+
+    
+
+    position: relative;
+    left: -10%;
+}
+
+.busqueda-btn {
+    margin-left: 20px;
+    margin-right: 20px;
+
+    width: 10.5em;
+    height: 3.5em;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    background-color: transparent;
+    color: white;
+    
+    border: 2px solid red;
+    border-radius: 100px;
+}
+
+#busqueda-input {
+    padding: 20px;
+    width: 60em;
+    border-width: 1px;
+    border: solid;
+    border-radius: 25px;
+    border-color: white;
+}
+
 
 .home .contenido img{
     max-width: 30rem;
