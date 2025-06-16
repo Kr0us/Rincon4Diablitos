@@ -51,13 +51,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Buscar por nombre de producto
+    // Buscar productos por nombre
     if (btnBuscar && inputBuscar) {
         btnBuscar.addEventListener('click', () => {
             const texto = inputBuscar.value.trim().toLowerCase();
-            showFilteredProducts(card => {
-                const nombre = card.querySelector('.producto-nombre')?.textContent.toLowerCase() || '';
-                return nombre.includes(texto);
+    
+            // Buscar y mostrar productos según el texto
+            document.querySelectorAll('.menu-categoria').forEach(seccion => {
+                let algunProductoVisible = false;
+                seccion.querySelectorAll('.producto-card').forEach(card => {
+                    const nombre = card.querySelector('.producto-nombre')?.textContent.toLowerCase() || '';
+                    const visible = nombre.includes(texto);
+                    card.style.display = visible ? '' : 'none';
+                    if (visible) algunProductoVisible = true;
+                });
+                // Mostrar la sección solo si tiene productos visibles
+                seccion.style.display = algunProductoVisible ? '' : 'none';
             });
         });
     }
@@ -77,4 +86,96 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+
+    // Slider precios
+    const slider = document.getElementById('precio-slider');
+    const valor = document.getElementById('precio-slider-valor');
+    if (slider && valor) {
+        // Asegura que el slider parte en el máximo
+        slider.value = slider.max;
+        valor.textContent = `$${slider.value}`;
+        slider.addEventListener('input', function() {
+            valor.textContent = `$${slider.value}`;
+        });
+    }
+
+
+    // Aplicar filtros
+    const aplicarBtn = document.querySelector('.aplicar-filtros');
+    if (aplicarBtn && slider) {
+        aplicarBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const precioMax = parseInt(slider.value, 10);
+            const categoriasSeleccionadas = Array.from(document.querySelectorAll('.filtro-categoria:checked'))
+                .map(cb => cb.value.toLowerCase());
+            const tamanosSeleccionados = Array.from(document.querySelectorAll('.filtro-tamano:checked'))
+                .map(cb => cb.value.toLowerCase());
+
+            // Filtrar secciones de categoría
+            document.querySelectorAll('.menu-categoria').forEach(seccion => {
+                const titulo = seccion.querySelector('.categoria-titulo')?.textContent.trim().toLowerCase() || '';
+                let mostrarSeccion = true;
+
+                // Si hay categorías seleccionadas, solo mostrar las que coinciden
+                if (categoriasSeleccionadas.length > 0) {
+                    mostrarSeccion = categoriasSeleccionadas.some(cat => titulo.includes(cat));
+                }
+
+                if (mostrarSeccion) {
+                    // Filtrar productos dentro de la sección
+                    seccion.querySelectorAll('.producto-card').forEach(card => {
+                        // --- PRECIO ---
+                        const precios = Array.from(card.querySelectorAll('.producto-precios span'))
+                            .map(span => parseInt(span.textContent.replace(/\D/g, ''), 10));
+                        const precioMin = Math.min(...precios);
+
+                        // --- TAMAÑO ---
+                        const tamanosProducto = Array.from(card.querySelectorAll('.producto-precios div'))
+                            .map(div => div.textContent.split('\n')[0].trim().toLowerCase());
+
+                        let mostrar = true;
+                        if (precioMin > precioMax) mostrar = false;
+                        if (mostrar && tamanosSeleccionados.length > 0) {
+                            mostrar = tamanosSeleccionados.some(tam => tamanosProducto.includes(tam));
+                        }
+                        card.style.display = mostrar ? '' : 'none';
+                    });
+
+                    // Mostrar la sección si al menos un producto está visible
+                    const algunProductoVisible = Array.from(seccion.querySelectorAll('.producto-card'))
+                        .some(card => card.style.display !== 'none');
+                    seccion.style.display = algunProductoVisible ? '' : 'none';
+                } else {
+                    // Oculta toda la sección si no es de la categoría seleccionada
+                    seccion.style.display = 'none';
+                }
+            });
+        });
+    }
+
+    // Botón Reset
+    const resetBtn = document.querySelector('.reset-filtros');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+            // Reset slider de precio
+            const slider = document.getElementById('precio-slider');
+            const valor = document.getElementById('precio-slider-valor');
+            if (slider && valor) {
+                slider.value = slider.max;
+                valor.textContent = `$${slider.value}`;
+            }
+
+            // Desmarcar categorías y tamaños
+            document.querySelectorAll('.filtro-categoria, .filtro-tamano').forEach(cb => cb.checked = false);
+
+            // Mostrar todas las secciones de menú y todos los productos
+            document.querySelectorAll('.menu-categoria').forEach(seccion => {
+                seccion.style.display = '';
+                seccion.querySelectorAll('.producto-card').forEach(card => card.style.display = '');
+            });
+        });
+    }
+
+
 });
