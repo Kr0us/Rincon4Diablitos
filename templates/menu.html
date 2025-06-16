@@ -46,21 +46,30 @@
         </div>
     </section>
 
-<!-- FILTROS -->>
-    <section class="busqueda-container">
-        <div class="busqueda">
-            <input type="text" placeholder="Buscar producto..." id="busqueda-input">
-            <button class="busqueda-btn">Buscar</button>
+    <section class="menu-contenedor">
+      <aside class="filtros-lateral">
+        <h3>Filtrar</h3>
+        <div class="filtro-bloque">
+          <span class="filtro-titulo">Precio</span>
+          <label><input type="checkbox" class="filtro-precio" value="0-2000"> $0 - $2.000</label>
+          <label><input type="checkbox" class="filtro-precio" value="2001-3000"> $2.001 - $3.000</label>
+          <label><input type="checkbox" class="filtro-precio" value="3001-4000"> $3.001 - $4.000</label>
+          <label><input type="checkbox" class="filtro-precio" value="4001-99999"> $4.001 o más</label>
         </div>
-        <div class="filtros">
-            <button class="busqueda-btn" id="precio">Filtrar Por Precio</button>
-            <button class="busqueda-btn" id="categoria">Filtrar Por Categoría</button>
-            <button class="busqueda-btn" id="tamano">Filtrar Por Tamaño</button>
+        <div class="filtro-bloque">
+          <span class="filtro-titulo">Categoría</span>
+          <label><input type="checkbox" class="filtro-categoria" value="completos"> Completos</label>
+          <label><input type="checkbox" class="filtro-categoria" value="hamburguesas"> Hamburguesas</label>
         </div>
-        
-    </section>
-    
-    <section class="menu-categoria">
+        <div class="filtro-bloque">
+          <span class="filtro-titulo">Tamaño</span>
+          <label><input type="checkbox" class="filtro-tamano" value="normal"> Normal</label>
+          <label><input type="checkbox" class="filtro-tamano" value="grande"> Grande</label>
+          <label><input type="checkbox" class="filtro-tamano" value="xl"> XL</label>
+        </div>
+      </aside>
+      <main class="menu-principal">
+        <section class="menu-categoria">
         <h2 class="categoria-titulo">Categoria 1 (Completos)</h2>
         <div class="productos-lista">
             <div class="producto-card">
@@ -171,11 +180,16 @@
             <!-- Más productos aquí -->
         </div>
     </section>
+      </main>
+    </section>
+
+        
+    
     
 
     
     <script src="js/script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    
+    <script src="js/menu.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>    
 </body>
 </html>
