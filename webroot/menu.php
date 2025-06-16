@@ -1,3 +1,3 @@
 <?php
-	include_once("../templates/prueba.html");
+	include_once("../templates/menu.html");
 ?>
