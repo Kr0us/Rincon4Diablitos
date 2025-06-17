@@ -28,7 +28,7 @@
 	}
 
 
-
+    $tamanos = execute_query($conn,"SELECT id_tamano, nombre_tamano FROM tamano;");
 	$categorias = execute_query($conn,"SELECT id_categoria, nombre_categoria FROM categoria;");
 	$menu = execute_query($conn,"
                                 SELECT m.nombre_menu, c.nombre_categoria 
@@ -107,41 +107,24 @@
             </div>
             <div class="filtro-bloque">
                 <span class="filtro-titulo">Categoría</span>
-                <label><input type="checkbox" class="filtro-categoria" value="completos"> Completos</label>
-                <label><input type="checkbox" class="filtro-categoria" value="ass">Ass</label>
-                <label><input type="checkbox" class="filtro-categoria" value="churrasco"> Churrasco / Lomito</label>
-                <label><input type="checkbox" class="filtro-categoria" value="hamburguesas"> Hamburguesas</label>
-                <label><input type="checkbox" class="filtro-categoria" value="papas"> Papas</label>
-                <label><input type="checkbox" class="filtro-categoria" value="chorrillana"> Chorrillana</label>
-                <label><input type="checkbox" class="filtro-categoria" value="fajitas"> Fajitas</label>
-                <label><input type="checkbox" class="filtro-categoria" value="pizza"> Pizza</label>
-                <label><input type="checkbox" class="filtro-categoria" value="nugget"> Nugget / Empanadas</label>
-                <label><input type="checkbox" class="filtro-categoria" value="agregados"> Agregados Extra</label>
-                <label><input type="checkbox" class="filtro-categoria" value="bebestibles"> Bebestibles</label>
+                <?php foreach($categorias as $categoria) { ?>
+                    <label><input type="checkbox" class="filtro-categoria" value="completos"><?=$categoria["nombre_categoria"];?></label>
+                <?php } ?>
             </div>
             <div class="filtro-bloque">
                 <span class="filtro-titulo">Tamaño</span>
-                <label><input type="checkbox" class="filtro-tamano" value="normal"> Normal</label>
-                <label><input type="checkbox" class="filtro-tamano" value="grande"> Grande</label>
-                <label><input type="checkbox" class="filtro-tamano" value="xl"> XL</label>
+                <?php foreach($tamanos as $tam) { ?>
+                    <label><input type="checkbox" class="filtro-tamano" value="normal"><?=$tam["nombre_tamano"];?></label>
+                <?php } ?>
             </div>
             <button class="aplicar-filtros">Aplicar</button>
         </aside>
         
         <main class="menu-principal">
-            <!-- Categoria 1: Completos -->
-                
-                    
-			<?php foreach($categorias as $categoria) { 
-                
-            
-
-            ?>
+			<?php foreach($categorias as $categoria) { ?>
 			<section class="menu-categoria">
 				<h2 class="categoria-titulo"><?= $categoria["nombre_categoria"]?></h2>
-				<?php  foreach($menu as $plato) { 
-                    
-                    
+				<?php  foreach($menu as $plato) {
                     if(strcmp($plato["nombre_categoria"], $categoria["nombre_categoria"]) == 0) {
                     $nombre = $plato['nombre_menu'];
                     $cat = $categoria["nombre_categoria"];
@@ -155,25 +138,17 @@
 					<div class="producto-info">
 						<div class="producto-nombre"><?= $plato["nombre_menu"]?></div>
 						<div class="producto-precios">
-                            <?php 
-                            
-
-                            foreach($plato["propiedades"] as $prop) {
-                                
-                            ?>
+                            <?php foreach($plato["propiedades"] as $prop) { ?>
 							    <div><?= $prop["nombre_tamano"]; ?><br><span>$<?= $prop["precio"]; ?></span></div>
                             <?php } ?>
 						</div>
 					</div>
 				</div>
 				<?php }} ?>
-
 				</div>
 			</section>
 			<?php } ?>  
 			
-				
-
     <footer class="sitio-footer">
         <div class="footer-container">
             <div class="footer-logo">
