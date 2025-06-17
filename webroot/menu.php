@@ -1,17 +1,23 @@
 <?php
-	function execute_query($conn,$sql) {
-		$datos = [];
+	function execute_query($conn, $sql) {
+        $datos = [];
 
-		$resultados = $conn->query($sql);
+        if ($conn->multi_query($sql)) {
+            do {
+                if ($result = $conn->store_result()) {
+                    while ($fila = $result->fetch_assoc()) {
+                        $datos[] = $fila;
+                    }
+                    $result->free();
+                }
+            } while ($conn->more_results() && $conn->next_result());
+        } else {
+            throw new Exception("Error ejecutando consulta: " . $conn->error);
+        }
 
-		if ($resultados) {
-			while ($fila = $resultados->fetch_assoc()) {
-				$datos[] = $fila; // Cada fila es un array asociativo
-			}
-		}
+        return $datos;
+    }
 
-		return $datos;
-	}
 
 	require_once("conexion.php");
 
@@ -24,21 +30,14 @@
 
 
 	$categorias = execute_query($conn,"SELECT id_categoria, nombre_categoria FROM categoria;");
-	// $menu = execute_query($conn,"
-	// 							SELECT 
-	// 								m.nombre_menu, 
-	// 								c.nombre_categoria,
-	// 								MAX(CASE WHEN t.nombre_tamano = 'Normal' THEN t.nombre_tamano END) AS tamaño_1,
-	// 								MAX(CASE WHEN t.nombre_tamano = 'XL' THEN t.nombre_tamano END) AS tamaño_2,
-	// 								MAX(CASE WHEN t.nombre_tamano = 'XXL' THEN t.nombre_tamano END) AS tamaño_3
-	// 							FROM categoria c
-	// 							INNER JOIN menu m ON m.id_categoria = c.id_categoria
-	// 							INNER JOIN menu_tamano mt ON mt.id_menu = m.id_menu
-	// 							INNER JOIN tamano t ON mt.id_tamano = t.id_tamano
-	// 							GROUP BY m.nombre_menu, c.nombre_categoria;
-	// 							");
-	
-
+	$menu = execute_query($conn,"
+                                SELECT m.nombre_menu, c.nombre_categoria 
+                                FROM menu m
+                                INNER JOIN categoria c ON m.id_categoria = c.id_categoria");
+    
+    for ($i=0; $i<count($menu); $i++) {
+        
+    }
 ?>
 
 <!DOCTYPE html>
@@ -133,10 +132,21 @@
             <!-- Categoria 1: Completos -->
                 
                     
-			<?php foreach($categorias as $categoria) { ?>
+			<?php foreach($categorias as $categoria) { 
+                
+            
+
+            ?>
 			<section class="menu-categoria">
 				<h2 class="categoria-titulo"><?= $categoria["nombre_categoria"]?></h2>
-				<?php  foreach($menu as $plato) { if(strcmp($plato["nombre_categoria"], $categoria["nombre_categoria"]) == 0) {?>
+				<?php  foreach($menu as $plato) { 
+                    
+                    
+                    if(strcmp($plato["nombre_categoria"], $categoria["nombre_categoria"]) == 0) {
+                    $nombre = $plato['nombre_menu'];
+                    $cat = $categoria["nombre_categoria"];
+                    $plato["propiedades"] = execute_query($conn, "CALL obtener_propiedades_de_menu('$nombre', '$cat');");     
+                ?>
 				<div class="productos-lista">
 				<div class="producto-card">
 					<div class="producto-img">
@@ -145,15 +155,14 @@
 					<div class="producto-info">
 						<div class="producto-nombre"><?= $plato["nombre_menu"]?></div>
 						<div class="producto-precios">
-							<?php if(!is_null($plato["tamaño_1"])) { ?>
-							<div><?= $plato["tamaño_1"]?><br><span>$2.000</span></div>
-							<?php } ?>
-							<?php if(!is_null($plato["tamaño_2"])) { ?>
-							<div><?= $plato["tamaño_2"]?><br><span>$2.500</span></div>
-							<?php } ?>
-							<?php if(!is_null($plato["tamaño_3"])) { ?>
-							<div><?= $plato["tamaño_3"]?><br><span>$3.000</span></div>
-							<?php } ?>
+                            <?php 
+                            
+
+                            foreach($plato["propiedades"] as $prop) {
+                                
+                            ?>
+							    <div><?= $prop["nombre_tamano"]; ?><br><span>$<?= $prop["precio"]; ?></span></div>
+                            <?php } ?>
 						</div>
 					</div>
 				</div>
@@ -163,422 +172,7 @@
 			</section>
 			<?php } ?>  
 			
-				<section class="menu-categoria">
-				<h2 class="categoria-titulo">Completos</h2>
-                <div class="productos-lista">
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/completos.png" alt="Italiano">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Hot Dog</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$2.800</span></div>
-                                <div>Grande<br><span>$3.800</span></div>
-                                <div>XL<br><span>$5.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/completos.png" alt="Otro completo">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Completo</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$2.000</span></div>
-                                <div>Grande<br><span>$2.500</span></div>
-                                <div>XL<br><span>$3.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/completos.png" alt="Otro completo">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Tomate Mayo</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$2.000</span></div>
-                                <div>Grande<br><span>$2.500</span></div>
-                                <div>XL<br><span>$3.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/completos.png" alt="Otro completo">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Palta Mayo</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$2.000</span></div>
-                                <div>Grande<br><span>$2.500</span></div>
-                                <div>XL<br><span>$3.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/completos.png" alt="Otro completo">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Italiano</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$2.000</span></div>
-                                <div>Grande<br><span>$2.500</span></div>
-                                <div>XL<br><span>$3.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/completos.png" alt="Otro completo">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Chaparrita</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$2.000</span></div>
-                                <div>Grande<br><span>$2.500</span></div>
-                                <div>XL<br><span>$3.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Categoria 2: Ass -->
-            <section class="menu-categoria">
-                <h2 class="categoria-titulo">Ass</h2>
-                <div class="productos-lista">
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/chacarero.png" alt="Clásica">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Clásica</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$3.000</span></div>
-                                <div>Grande<br><span>$3.500</span></div>
-                                <div>XL<br><span>$4.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/hamburguesa-clasica.png" alt="Clásica">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Clásica</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$3.000</span></div>
-                                <div>Grande<br><span>$3.500</span></div>
-                                <div>XL<br><span>$4.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Puedes agregar más productos aquí -->
-                </div>
-            </section>
-            <!-- Categoria 3: Hamburguesas -->
-            <section class="menu-categoria">
-                <h2 class="categoria-titulo">Churrasco / Lomitos</h2>
-                <div class="productos-lista">
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/chacarero.png" alt="Clásica">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Clásica</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$3.000</span></div>
-                                <div>Grande<br><span>$3.500</span></div>
-                                <div>XL<br><span>$4.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/hamburguesa-clasica.png" alt="Clásica">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Clásica</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$3.000</span></div>
-                                <div>Grande<br><span>$3.500</span></div>
-                                <div>XL<br><span>$4.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Puedes agregar más productos aquí -->
-                </div>
-            </section>
-
-            <!-- Categoria 2: Hamburguesas -->
-            <section class="menu-categoria">
-                <h2 class="categoria-titulo">Hamburguesas</h2>
-                <div class="productos-lista">
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/chacarero.png" alt="Clásica">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Clásica</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$3.000</span></div>
-                                <div>Grande<br><span>$3.500</span></div>
-                                <div>XL<br><span>$4.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/hamburguesa-clasica.png" alt="Clásica">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Clásica</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$3.000</span></div>
-                                <div>Grande<br><span>$3.500</span></div>
-                                <div>XL<br><span>$4.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Puedes agregar más productos aquí -->
-                </div>
-            </section>
-            <!-- Categoria 2: Hamburguesas -->
-            <section class="menu-categoria">
-                <h2 class="categoria-titulo">Papas</h2>
-                <div class="productos-lista">
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/chacarero.png" alt="Clásica">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Clásica</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$3.000</span></div>
-                                <div>Grande<br><span>$3.500</span></div>
-                                <div>XL<br><span>$4.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/hamburguesa-clasica.png" alt="Clásica">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Clásica</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$3.000</span></div>
-                                <div>Grande<br><span>$3.500</span></div>
-                                <div>XL<br><span>$4.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Puedes agregar más productos aquí -->
-                </div>
-            </section>
-            <!-- Categoria 2: Hamburguesas -->
-            <section class="menu-categoria">
-                <h2 class="categoria-titulo">Chorrillana</h2>
-                <div class="productos-lista">
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/chacarero.png" alt="Clásica">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Clásica</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$3.000</span></div>
-                                <div>Grande<br><span>$3.500</span></div>
-                                <div>XL<br><span>$4.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/hamburguesa-clasica.png" alt="Clásica">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Clásica</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$3.000</span></div>
-                                <div>Grande<br><span>$3.500</span></div>
-                                <div>XL<br><span>$4.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Puedes agregar más productos aquí -->
-                </div>
-            </section>
-            <!-- Categoria 2: Hamburguesas -->
-            <section class="menu-categoria">
-                <h2 class="categoria-titulo">Fajitas</h2>
-                <div class="productos-lista">
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/chacarero.png" alt="Clásica">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Clásica</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$3.000</span></div>
-                                <div>Grande<br><span>$3.500</span></div>
-                                <div>XL<br><span>$4.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/hamburguesa-clasica.png" alt="Clásica">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Clásica</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$3.000</span></div>
-                                <div>Grande<br><span>$3.500</span></div>
-                                <div>XL<br><span>$4.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Puedes agregar más productos aquí -->
-                </div>
-            </section>
-            <!-- Categoria 2: Hamburguesas -->
-            <section class="menu-categoria">
-                <h2 class="categoria-titulo">Pizza</h2>
-                <div class="productos-lista">
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/chacarero.png" alt="Clásica">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Clásica</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$3.000</span></div>
-                                <div>Grande<br><span>$3.500</span></div>
-                                <div>XL<br><span>$4.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/hamburguesa-clasica.png" alt="Clásica">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Clásica</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$3.000</span></div>
-                                <div>Grande<br><span>$3.500</span></div>
-                                <div>XL<br><span>$4.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Puedes agregar más productos aquí -->
-                </div>
-            </section>
-            <!-- Categoria 2: Hamburguesas -->
-            <section class="menu-categoria">
-                <h2 class="categoria-titulo">Nugget / Empanadas</h2>
-                <div class="productos-lista">
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/chacarero.png" alt="Clásica">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Clásica</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$3.000</span></div>
-                                <div>Grande<br><span>$3.500</span></div>
-                                <div>XL<br><span>$4.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/hamburguesa-clasica.png" alt="Clásica">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Clásica</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$3.000</span></div>
-                                <div>Grande<br><span>$3.500</span></div>
-                                <div>XL<br><span>$4.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Puedes agregar más productos aquí -->
-                </div>
-            </section>
-            <!-- Categoria 2: Hamburguesas -->
-            <section class="menu-categoria">
-                <h2 class="categoria-titulo">Agregados Extra</h2>
-                <div class="productos-lista">
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/chacarero.png" alt="Clásica">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Clásica</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$3.000</span></div>
-                                <div>Grande<br><span>$3.500</span></div>
-                                <div>XL<br><span>$4.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/hamburguesa-clasica.png" alt="Clásica">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Clásica</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$3.000</span></div>
-                                <div>Grande<br><span>$3.500</span></div>
-                                <div>XL<br><span>$4.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Puedes agregar más productos aquí -->
-                </div>
-            </section>
-            <!-- Categoria 2: Hamburguesas -->
-            <section class="menu-categoria">
-                <h2 class="categoria-titulo">Bebestibles</h2>
-                <div class="productos-lista">
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/chacarero.png" alt="Clásica">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Clásica</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$3.000</span></div>
-                                <div>Grande<br><span>$3.500</span></div>
-                                <div>XL<br><span>$4.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="producto-card">
-                        <div class="producto-img">
-                            <img src="images/hamburguesa-clasica.png" alt="Clásica">
-                        </div>
-                        <div class="producto-info">
-                            <div class="producto-nombre">Clásica</div>
-                            <div class="producto-precios">
-                                <div>Normal<br><span>$3.000</span></div>
-                                <div>Grande<br><span>$3.500</span></div>
-                                <div>XL<br><span>$4.000</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Puedes agregar más productos aquí -->
-                </div>
-            </section>
-        </main>
-    </section>
+				
 
     <footer class="sitio-footer">
         <div class="footer-container">
