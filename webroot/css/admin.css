@@ -1,0 +1,37 @@
+.login-section {
+    background: #fff;
+    color: #000;
+    max-width: 400px;
+    margin: 80px auto 40px auto;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #0005;
+    z-index: 1000;
+    position: relative;
+}
+.login-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.login-form label {
+    display: block;
+    margin-top: 10px;
+}
+.login-form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.login-form button {
+    width: 100%;
+    padding: 10px;
+    background: #a00;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}

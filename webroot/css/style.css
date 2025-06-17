@@ -11,7 +11,7 @@
   text-decoration: none;
   outline: none;
   border: none;
-  text-transform: capitalize;
+  text-transform: none;
   -webkit-transition: all .2s linear;
   transition: all .2s linear;
 }
@@ -70,7 +70,7 @@ section {
 
 .heading h3 {
   font-size: 3rem;
-  text-transform: uppercase;
+  text-transform: none;
   color: #fff;
   margin-top: 1rem;
 }
@@ -214,7 +214,7 @@ section {
 
 .home .contenido h3 {
   font-size: 4rem;
-  text-transform: uppercase;
+  text-transform: none;
   color: #fff;
 }
 
@@ -253,7 +253,7 @@ section {
 .servicio .caja h3 {
   padding: 1rem 0;
   font-size: 2rem;
-  text-transform: uppercase;
+  text-transform: none;
   color: #fff;
 }
 
@@ -300,7 +300,7 @@ section {
 
 .menu .caja-container .cajas .contenido h3 {
   font-size: 2rem;
-  text-transform: uppercase;
+  text-transform: none;
   color: #fff;
 }
 
@@ -309,8 +309,6 @@ section {
   line-height: 2;
   color: #aaa;
 }
-
-/* Sección sobre nosotros */
 .about {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -341,7 +339,7 @@ section {
 
 .about .contenido .titulo {
   font-size: 2.5rem;
-  text-transform: uppercase;
+  text-transform: none;
   color: #fff;
 }
 
@@ -366,7 +364,7 @@ section {
       -ms-flex: 1 1 16rem;
           flex: 1 1 16rem;
   font-size: 1.2rem;
-  text-transform: uppercase;
+  text-transform: none;
   color: #fff;
   padding-bottom: 1rem;
 }
@@ -375,15 +373,15 @@ section {
   padding-right: .5rem;
   color: #ff0000;
 }
-
 /* Sección de opiniones/contacto */
 .opinion .row {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  padding-bottom: 8rem;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  gap: 3rem;
+  
 }
 
 .opinion .row .mapa {
@@ -428,7 +426,7 @@ section {
 .opinion .row .form .iconos-container .iconos h3 {
   padding: 1rem 0;
   font-size: 2rem;
-  text-transform: uppercase;
+  text-transform: none;
   color: #fff;
 }
 
@@ -541,7 +539,7 @@ section {
 
 .blogs .caja-container .caja .contenido h3 {
   font-size: 2rem;
-  text-transform: uppercase;
+  text-transform: none;
   color: #fff;
 }
 
@@ -552,46 +550,7 @@ section {
   padding: 1.5rem 0;
 }
 
-/* Footer como barra negra tipo navbar */
-.sitio-footer {
-  background: #000;
-  padding: 2rem 0 0 0;
-  text-align: center;
-}
 
-.sitio-footer .links {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  padding-bottom: 1rem;
-}
-
-.sitio-footer .links a {
-  color: #fff;
-  font-weight: bold;
-  font-size: 2rem;
-  margin: 0 2rem;
-  border: none;
-  background: none;
-  padding: 0.5rem 1.5rem;
-  border-radius: 3px;
-  transition: background 0.3s, color 0.3s;
-}
-
-.sitio-footer .links a:hover {
-  text-decoration: underline;
-  text-underline-offset: 1rem;
-  color: #2087cc;
-  background: none;
-}
-
-.sitio-footer .creditos {
-  font-size: 1.5rem;
-  line-height: 2;
-  color: #aaa;
-  padding-top: 1rem;
-}
 
 /* Sección de ubicación/contacto */
 .ubicacion .row {
@@ -650,7 +609,7 @@ section {
 .ubicacion .row .form .iconos-container .iconos h3 {
   padding: 1rem 0;
   font-size: 2rem;
-  text-transform: uppercase;
+  text-transform: none;
   color: #fff;
 }
 
@@ -685,16 +644,6 @@ section {
   resize: none;
 }
 
-/* Responsive para footer */
-@media (max-width: 750px) {
-  .sitio-footer .links {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .sitio-footer .links a {
-    margin: 0;
-  }
-}
 
 @media (max-width: 1200px) {
   html {

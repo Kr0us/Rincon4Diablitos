@@ -1,19 +1,41 @@
+<?php
+session_start();
+
+$error = ""; // Inicializa la variable para evitar warnings
+
+// Usuario y contraseña de ejemplo
+$usuario_valido = "admin";
+$contrasena_valida = "1234";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    if ($username === $usuario_valido && $password === $contrasena_valida) {
+        $_SESSION["admin"] = true;
+        header("Location: dashboard.php"); // Redirige a la página de administración
+        exit();
+    } else {
+        $error = "Usuario o contraseña incorrectos.";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/test.css">
     <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="stylesheet" href="css/footer.css">
+	<link rel="stylesheet" href="css/admin.css">
+    <title>Rincon De Los 4 Diablitos</title>
 </head>
-
 <body>
+
     <header class="sitio-header">
         <div id="menu-btn" class="fas fa-bars icono"></div>
         <!--<div id="search-btn" class="fas fa-search icono"></div>-->
@@ -22,41 +44,40 @@
 
         <!--Barra principal de menu-->
        <nav class="navbar">
-            <a href="index.php">Inicio</a>
+            <a href="index.php">inicio</a>
             <a href="menu.php">Menu</a>
-            <a href="index.php">Acerca de</a>
-            <a href="index.php">Ubicacion</a>
+            <a href="#acercade">Acerca de</a>
+            <a href="#ubicacion">Ubicacion</a>
             <a href="blog.php">Blog</a>
             <a href="opinion.php">Opiniones</a>
         </nav> 
-        <!--Iconos de redes sociales-->
         <div class="iconosSuperior">
             <a href="https://wa.me/56979592806" class="fab fa-whatsapp icono"></a>
             <a href="https://www.instagram.com/el_rincon_de_los_4_diablitos/" class="fab fa-instagram icono"></a>
         </div>
+       
+        <form action="" class="busqueda-form">
+                <input type="search" name="" placeholder="search here..." id="caja-busqueda">
+                <label for="#caja-busqueda" class="fas fa-search icono"></label>
+        </form>
     </header>
 
-    <section class="home" id="inicio">
-            <div class="contenido">
-                <img id="Foto" data-aos="fade-up" data-aos-delay="150" src="./images/logo-grande.png" alt="banner">
-                <h3 data-aos="fade-up" data-aos-delay="300">Opiniones</h3>
-                <p data-aos="fade-up" data-aos-delay="450"></p>
-            </div>
-    </section>
-
-    <!-- Seccion de opiniones -->
-    <section class="opinion" id="opinion">
-        <div class="row">
-            <div class="form">
-                <form action="php/contacto.php" method="POST" >
-                    <input data-aos="fade-up" data-aos-delay="150" type="text" name="nombre" placeholder="Nombre completo" class="cajas" required>
-                    <input data-aos="fade-up" data-aos-delay="300" type="email" name="email" placeholder="Correo electronico" class="cajas" required>
-                    <input data-aos="fade-up" data-aos-delay="450" type="number" name="telefono" placeholder="Telefono" class="cajas" required>
-                    <textarea data-aos="fade-up" data-aos-delay="600" name="mensaje" placeholder="Escriba un mensaje" class="cajas" cols="30" rows="10" required></textarea>
-                    <input data-aos="fade-up" data-aos-delay="750" type="submit" value="Enviar mensaje" class="btn">
-                </form>
-            </div> 
-        </div>
+	<section class="login-section">
+        <h2>Iniciar Sesión Administrador</h2>
+        <form action="admin.php" method="POST" class="login-form">
+            <label for="username">Usuario:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Ingresar</button>
+        </form>
+        <?php
+        if (isset($error)) {
+            echo "<p style='color:red;'>$error</p>";
+        }
+        ?>
     </section>
 
     <footer class="sitio-footer">
@@ -73,6 +94,7 @@
                     <li><a href="#ubicacion">Ubicación</a></li>
                     <li><a href="blog.php">Blog</a></li>
                     <li><a href="opinion.php">Opiniones</a></li>
+                    <li><a href="admin.php">Admin</a></li>
                 </ul>
             </div>
             <div class="footer-contacto">
@@ -97,9 +119,9 @@
         </div>
     </footer>
 
-    <!--Scripts-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    
 </body>
 </html>
-
