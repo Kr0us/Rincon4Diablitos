@@ -133,7 +133,7 @@
 				<div class="productos-lista">
 				<div class="producto-card">
 					<div class="producto-img">
-						<img src="images/completos.png" alt="<?= $plato["nombre_menu"]?>">
+						<img src="images/<?=$categoria["nombre_categoria"];?>/<?=trim(strtolower($categoria["nombre_categoria"]));?>.jpg" alt="<?= $plato["nombre_menu"]?>">
 					</div>
 					<div class="producto-info">
 						<div class="producto-nombre"><?= $plato["nombre_menu"]?></div>
