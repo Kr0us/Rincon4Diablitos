@@ -128,7 +128,7 @@
         <div class="caja-container">
             <div class="caja" data-aos="fade-up" data-aos-delay="150">
                 <div class="imagen">
-                    <img src="./images/chacarero.png" alt="blog">
+                    <img src="./images/Hamburguesas/chacarero.png" alt="blog">
                     <div class="iconos">
                         <a href="#"><i class="fas fa-calendar"> 18 Septiembre 2023</i></a>
                         <a href="#"><i class="fas fa-user"> por: Chef Guille</i></a>
@@ -143,7 +143,7 @@
 
             <div class="caja" data-aos="fade-up" data-aos-delay="300">
                 <div class="imagen">
-                    <img src="./images/pizzeta.png" alt="blog">
+                    <img src="./images/pizzas/pizzeta.png" alt="blog">
                     <div class="iconos">
                         <a href="#"><i class="fas fa-calendar"> 18 Septiembre 2023</i></a>
                         <a href="#"><i class="fas fa-user"> por: Chef Guille</i></a>
@@ -158,7 +158,7 @@
 
             <div class="caja" data-aos="fade-up" data-aos-delay="450">
                 <div class="imagen">
-                    <img src="./images/completos.png" alt="blog">
+                    <img src="./images/Completos/completos.jpg" alt="blog">
                     <div class="iconos">
                         <a href="#"><i class="fas fa-calendar"> 18 Septiembre 2023</i></a>
                         <a href="#"><i class="fas fa-user"> por: Chef Guille</i></a>

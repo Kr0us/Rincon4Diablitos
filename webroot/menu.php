@@ -121,33 +121,35 @@
         </aside>
         
         <main class="menu-principal">
-			<?php foreach($categorias as $categoria) { ?>
-			<section class="menu-categoria">
-				<h2 class="categoria-titulo"><?= $categoria["nombre_categoria"]?></h2>
-				<?php  foreach($menu as $plato) {
+            <?php foreach($categorias as $categoria) { ?>
+            <section class="menu-categoria">
+                <h2 class="categoria-titulo"><?= $categoria["nombre_categoria"]?></h2>
+                <?php  foreach($menu as $plato) {
                     if(strcmp($plato["nombre_categoria"], $categoria["nombre_categoria"]) == 0) {
                     $nombre = $plato['nombre_menu'];
                     $cat = $categoria["nombre_categoria"];
                     $plato["propiedades"] = execute_query($conn, "CALL obtener_propiedades_de_menu('$nombre', '$cat');");     
                 ?>
-				<div class="productos-lista">
-				<div class="producto-card">
-					<div class="producto-img">
-						<img src="images/<?=$categoria["nombre_categoria"];?>/<?=trim(strtolower($categoria["nombre_categoria"]));?>.jpg" alt="<?= $plato["nombre_menu"]?>">
-					</div>
-					<div class="producto-info">
-						<div class="producto-nombre"><?= $plato["nombre_menu"]?></div>
-						<div class="producto-precios">
+                <div class="productos-lista">
+                <div class="producto-card">
+                    <div class="producto-img">
+                        <img src="images/<?=$categoria["nombre_categoria"];?>/<?=trim(strtolower($categoria["nombre_categoria"]));?>.jpg" alt="<?= $plato["nombre_menu"]?>">
+                    </div>
+                    <div class="producto-info">
+                        <div class="producto-nombre"><?= $plato["nombre_menu"]?></div>
+                        <div class="producto-precios">
                             <?php foreach($plato["propiedades"] as $prop) { ?>
-							    <div><?= $prop["nombre_tamano"]; ?><br><span>$<?= $prop["precio"]; ?></span></div>
+                                <div><?= $prop["nombre_tamano"]; ?><br><span>$<?= $prop["precio"]; ?></span></div>
                             <?php } ?>
-						</div>
-					</div>
-				</div>
-				<?php }} ?>
-				</div>
-			</section>
-			<?php } ?>  
+                        </div>
+                    </div>
+                </div>
+                <?php }} ?>
+                </div>
+            </section>
+            <?php } ?>  
+        </main>
+    </section>
 
 			
     <footer class="sitio-footer">
@@ -164,6 +166,7 @@
                     <li><a href="#ubicacion">Ubicación</a></li>
                     <li><a href="blog.php">Blog</a></li>
                     <li><a href="opinion.php">Opiniones</a></li>
+                    <li><a href="admin.php">Admin</a></li>
                 </ul>
             </div>
             <div class="footer-contacto">
