@@ -57,7 +57,7 @@
 </head>
 
 <body>
-    <?php include_once "html/header.html "?>
+    <?php include_once "html/header.html"?>
     
     <section class="home" id="inicio">
         <div class="contenido">
@@ -130,7 +130,7 @@
         </main>
     </section>
 
-    <?php include_once "html/footer.html "?>
+    <?php include_once "html/footer.html"?>
 			
     <script src="js/script.js"></script>
     <script src="js/menu.js"></script>

@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 
-    <?php include_once "html/header.html "?>
+    <?php include_once "html/header.html"?>
 
 	<section class="login-section">
         <h2>Iniciar Sesión Administrador</h2>
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ?>
     </section>
 
-    <?php include_once "html/footer.html "?>
+    <?php include_once "html/footer.html"?>
 
     <script src="js/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>

@@ -14,7 +14,7 @@
 </head>
 <body>
 
-    <?php include_once "html/header.html "?>
+    <?php include_once "html/header.html"?>
 
     <section class="home" id="inicio">
         <div class="contenido">

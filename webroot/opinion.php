@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <?php include_once "html/header.html "?>
+    <?php include_once "html/header.html"?>
 
     <section class="home" id="inicio">
             <div class="contenido">
@@ -39,7 +39,7 @@
         </div>
     </section>
 
-    <?php include_once "html/footer.html "?>
+    <?php include_once "html/footer.html"?>
 
     <!--Scripts-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
