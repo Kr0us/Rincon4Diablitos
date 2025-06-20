@@ -73,8 +73,14 @@
         </div>
     </section>
 
+    <button id="filtros-toggle" class="filtros-toggle" aria-label="Mostrar filtros">
+        <i class="fas fa-sliders-h"></i> Filtros
+    </button>
+    <div id="filtros-overlay" class="filtros-overlay"></div>
+
+
     <section class="menu-contenedor">
-        <aside class="filtros-lateral">
+        <aside class="filtros-lateral" id="filtros-lateral">
             <h3>Filtrar:</h3><br>
             <button type="button" class="reset-filtros">Reset</button><br>
             <div class="filtro-bloque">

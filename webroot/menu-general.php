@@ -13,76 +13,16 @@
     <title>Menu</title>
 </head>
 <body>
-<header class="sitio-header">
-        <div id="menu-btn" class="fas fa-bars icono"></div>
-        <!--<div id="search-btn" class="fas fa-search icono"></div>-->
-        <span></span><!--Espacio-->
-        <a href="index.php" class="logo"><img src="images/logo.png"></a>
 
-        <!--Barra principal de menu-->
-       <nav class="navbar">
-            <a href="index.php">Inicio</a>
-            <a href="menu.php">Menu</a>
-            <a href="#acercade">Acerca de</a>
-            <a href="#ubicacion">Ubicacion</a>
-            <a href="blog.php">Blog</a>
-            <a href="opinion.php">Opiniones</a>
-        </nav> 
-        <div class="iconosSuperior">
-            <a href="https://wa.me/56979592806" class="fab fa-whatsapp icono"></a>
-            <a href="https://www.instagram.com/el_rincon_de_los_4_diablitos/" class="fab fa-instagram icono"></a>
-        </div>
-       
-        <form action="" class="busqueda-form">
-                <input type="search" name="" placeholder="search here..." id="caja-busqueda">
-                <label for="#caja-busqueda" class="fas fa-search icono"></label>
-        </form>
-    </header>
+    <?php include_once "html/header.html"; ?>
     
     <main>
 
     </main>
 
 
-    <footer class="sitio-footer">
-        <div class="footer-container">
-            <div class="footer-logo">
-                <a href="index.php"><img src="images/logo.png" alt="Rincon De Los 4 Diablitos" style="height:60px;"></a>
-            </div>
-            <div class="footer-links">
-                <h4>Navegación</h4>
-                <ul>
-                    <li><a href="index.php">Inicio</a></li>
-                    <li><a href="menu.php">Menú</a></li>
-                    <li><a href="#acercade">Acerca de</a></li>
-                    <li><a href="#ubicacion">Ubicación</a></li>
-                    <li><a href="blog.php">Blog</a></li>
-                    <li><a href="opinion.php">Opiniones</a></li>
-                    <li><a href="admin.php">Admin</a></li>
-                </ul>
-            </div>
-            <div class="footer-contacto">
-                <h4>Contacto</h4>
-                <ul>
-                    <li><i class="fas fa-map-marker-alt"></i> Esmeralda 6367, Peñalolén</li>
-                    <li><i class="fas fa-phone"></i> <a href="tel:+56979592806">+56 9 7959 2806</a></li>
-                    <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/56979592806" target="_blank" rel="noopener">WhatsApp</a></li>
-                    <li><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/el_rincon_de_los_4_diablitos/" target="_blank" rel="noopener">@el_rincon_de_los_4_diablitos</a></li>
-                </ul>
-            </div>
-            <div class="footer-horario">
-                <h4>Horario</h4>
-                <ul>
-                    <li>Domingo a Jueves: 19:00 - 01:00</li>
-                    <li>Viernes y Sábado: 19:00 - 03:00</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-creditos">
-            <p>&copy; 2024 Rincon De Los 4 Diablitos. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-    
+    <?php include_once "html/footer.html"; ?>
+
     <script src="js/script.js"></script>
     <script src="js/menu.js"></script>
 </body>

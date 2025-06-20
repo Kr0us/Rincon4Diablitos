@@ -176,4 +176,30 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+
+    // Filtros desplegables en móvil tipo sidebar
+    const filtrosToggle = document.getElementById('filtros-toggle');
+    const filtrosLateral = document.getElementById('filtros-lateral');
+    const filtrosOverlay = document.getElementById('filtros-overlay');
+    if (filtrosToggle && filtrosLateral && filtrosOverlay) {
+        function abrirFiltros() {
+            filtrosLateral.classList.add('abierto');
+            filtrosOverlay.classList.add('activo');
+            document.body.style.overflow = 'hidden';
+        }
+        function cerrarFiltros() {
+            filtrosLateral.classList.remove('abierto');
+            filtrosOverlay.classList.remove('activo');
+            document.body.style.overflow = '';
+        }
+        filtrosToggle.addEventListener('click', abrirFiltros);
+        filtrosOverlay.addEventListener('click', cerrarFiltros);
+    
+        // Opcional: cerrar con ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') cerrarFiltros();
+        });
+    }
+
+
 });
