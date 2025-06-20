@@ -1,5 +1,6 @@
 /* Footer como barra negra tipo navbar */
 .sitio-footer {
+    /* Fondo negro, texto blanco, padding superior, margen superior, fuente */
     background: #000000;
     color: #fff;
     padding: 40px 0 0 0;
@@ -8,6 +9,7 @@
 }
 
 .footer-container {
+    /* Layout flex, responsive, centrado, espacio entre columnas */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -19,11 +21,13 @@
 }
 
 .footer-logo img {
+    /* Logo alineado y con margen inferior */
     display: block;
     margin-bottom: 10px;
 }
 
 .footer-links, .footer-contacto, .footer-horario {
+    /* Columnas flexibles, ancho mínimo */
     flex: 1 1 180px;
     min-width: 180px;
 }
@@ -31,6 +35,7 @@
 .footer-links h4,
 .footer-contacto h4,
 .footer-horario h4 {
+    /* Títulos de sección: margen, tamaño, color rojo */
     margin-bottom: 10px;
     font-size: 2em;
     color: #ff0000;
@@ -39,6 +44,7 @@
 .footer-links ul,
 .footer-contacto ul,
 .footer-horario ul {
+    /* Listas sin viñetas ni margen/padding */
     list-style: none;
     padding: 0;
     margin: 0;
@@ -47,12 +53,14 @@
 .footer-links ul li,
 .footer-contacto ul li,
 .footer-horario ul li {
+    /* Espaciado entre elementos de lista, tamaño de fuente */
     margin-bottom: 8px;
     font-size: 1.5em;
 }
 
 .footer-links ul li a,
 .footer-contacto ul li a {
+    /* Enlaces: color blanco, sin subrayado, transición de color */
     color: #fff;
     text-decoration: none;
     transition: color 0.2s;
@@ -60,10 +68,12 @@
 
 .footer-links ul li a:hover,
 .footer-contacto ul li a:hover {
+    /* Hover enlaces: color rojo */
     color: #ff0000;
 }
 
 .footer-creditos {
+    /* Créditos: centrado, padding, fondo oscuro, tamaño y color de texto, margen superior */
     text-align: center;
     padding: 18px 0 10px 0;
     background: #120000;
@@ -74,11 +84,13 @@
 
 @media (max-width: 800px) {
     .footer-container {
+        /* Responsive: columnas en vertical, centrado, menos espacio */
         flex-direction: column;
         align-items: center;
         gap: 20px;
     }
     .footer-logo {
+        /* Menor margen inferior en móvil */
         margin-bottom: 10px;
     }
 }

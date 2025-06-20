@@ -1,6 +1,8 @@
+/* =================== FUENTES =================== */
 /* Importa la fuente Raleway de Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap");
 
+/* =================== RESET Y BASE =================== */
 /* Reset y estilos base para todos los elementos */
 * {
   font-family: 'Raleway', sans-serif;
@@ -16,6 +18,7 @@
   transition: all .2s linear;
 }
 
+/* =================== ICONOS SUPERIOR =================== */
 /* Estilos para el contenedor de iconos superiores */
 .iconosSuperior {
   display: flex;
@@ -29,6 +32,7 @@
   }
 }
 
+/* =================== HTML Y FONDO =================== */
 /* Estilos generales para el html y fondo */
 html {
   font-size: 62.5%;
@@ -41,6 +45,7 @@ html {
   background-size: cover;
 }
 
+/* =================== SCROLLBAR =================== */
 /* Personalización de la barra de scroll */
 html::-webkit-scrollbar {
   width: 1rem;
@@ -55,12 +60,13 @@ html::-webkit-scrollbar-thumb {
   border-radius: 5rem;
 }
 
-
+/* =================== SECCIONES =================== */
 /* Espaciado general para las secciones */
 section {
   padding: 3rem 9%;
 }
 
+/* =================== ENCABEZADOS =================== */
 /* Encabezados de sección */
 .heading {
   text-align: center;
@@ -75,6 +81,7 @@ section {
   margin-top: 1rem;
 }
 
+/* =================== BOTÓN PRINCIPAL =================== */
 /* Botón principal */
 .btn {
   display: inline-block;
@@ -93,6 +100,7 @@ section {
   border: 0.2rem solid rgba(238, 238, 238, 0.76);
 }
 
+/* =================== HEADER =================== */
 /* Header fijo del sitio */
 .sitio-header {
   position: fixed;
@@ -114,6 +122,7 @@ section {
   gap: 1rem;
 }
 
+/* Iconos en el header */
 .sitio-header .icono {
   font-size: 2.5rem;
   cursor: pointer;
@@ -124,10 +133,12 @@ section {
   color: #2087cc;
 }
 
+/* Botón de menú (responsive) */
 .sitio-header #menu-btn {
   display: none;
 }
 
+/* Navbar del header */
 .sitio-header .navbar a {
   color: #fff;
   font-weight: bold;
@@ -141,22 +152,24 @@ section {
   color: #2087cc;
 }
 
+/* Espacio en navbar */
 .sitio-header .navbar .espacio {
   display: inline-block;
   width: 16rem;
 }
 
+/* Logo en el header */
 .sitio-header .logo {
   position:absolute;
   top: 0%;
   left: 0%;
-  
 }
 
 .sitio-header .logo img {
   width: 9rem;
 }
 
+/* Formulario de búsqueda en el header */
 .sitio-header .busqueda-form {
   height: 7rem;
   padding: 0 2rem;
@@ -189,11 +202,13 @@ section {
   color: #fff;
 }
 
+/* Icono de cerrar en el formulario */
 .sitio-header .fa-times {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
 }
 
+/* =================== HOME =================== */
 /* Sección principal de inicio */
 .home {
   margin-top: 7rem;
@@ -225,6 +240,7 @@ section {
   padding: 2rem 0;
 }
 
+/* =================== SERVICIOS =================== */
 /* Sección de servicios */
 .servicio {
   display: -ms-grid;
@@ -263,6 +279,7 @@ section {
   color: #aaa;
 }
 
+/* =================== MENÚ =================== */
 /* Sección de menú */
 .menu .caja-container {
   display: -ms-grid;
@@ -309,6 +326,9 @@ section {
   line-height: 2;
   color: #aaa;
 }
+
+/* =================== ABOUT =================== */
+/* Sección sobre nosotros */
 .about {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -373,6 +393,8 @@ section {
   padding-right: .5rem;
   color: #ff0000;
 }
+
+/* =================== OPINIONES / CONTACTO =================== */
 /* Sección de opiniones/contacto */
 .opinion .row {
   display: -webkit-box;
@@ -381,7 +403,6 @@ section {
   padding-bottom: 8rem;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  
 }
 
 .opinion .row .mapa {
@@ -446,7 +467,6 @@ section {
   color: #fff;
   background: none;
   border: 0.2rem solid #ff0000;
-
   text-transform: none;
   width: 100%;
   margin: .7rem 0;
@@ -461,6 +481,7 @@ section {
   resize: none;
 }
 
+/* =================== BLOGS =================== */
 /* Sección de blogs/noticias */
 .blogs .caja-container {
   display: -ms-grid;
@@ -550,8 +571,7 @@ section {
   padding: 1.5rem 0;
 }
 
-
-
+/* =================== UBICACIÓN =================== */
 /* Sección de ubicación/contacto */
 .ubicacion .row {
   display: -webkit-box;
@@ -574,10 +594,12 @@ section {
           flex: 1 1 40rem;
 }
 
+/* Contenedor de iconos en ubicación */
 .iconos-container{
   height: 100%;
   align-items: center;
 }
+
 .ubicacion .row .form .iconos-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -602,7 +624,6 @@ section {
   background: #ff0000;
   color: #ffffff;
   font-size: 2rem;
-
   /*margin-bottom: 1rem;*/
 }
 
@@ -629,7 +650,6 @@ section {
   color: #fff;
   background: none;
   border: 0.2rem solid #ff0000;
-
   text-transform: none;
   width: 100%;
   margin: .7rem 0;
@@ -644,7 +664,7 @@ section {
   resize: none;
 }
 
-
+/* =================== MEDIA QUERIES =================== */
 @media (max-width: 1200px) {
   html {
     font-size: 55%;
@@ -655,7 +675,7 @@ section {
 }
 
 @media (max-width: 970px) {
-
+  /* Header responsive */
   .sitio-header {
     -webkit-box-pack: end;
         -ms-flex-pack: end;
@@ -720,8 +740,7 @@ section {
   }
 }
 
-/* ...existing code... */
-
+/* =================== MENÚ CONTAINER ESPECÍFICO =================== */
 /* Estilos específicos para el menú, solo dentro de .menu-container */
 .menu-container {
     max-width: 800px;

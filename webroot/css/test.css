@@ -1,65 +1,65 @@
+/* Contenedor principal de la barra de búsqueda */
 .busqueda-container {
-    width: 100%;
-    display: flex;
-    flex-direction: row; /* Para apilar elementos verticalmente */
-    justify-content: center; /* Centra verticalmente */
-    align-items: center;
-
+  width: 100%;
+  display: flex;
+  flex-direction: row; /* Apila elementos horizontalmente */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
 }
 
+/* Estilos para el formulario de búsqueda */
 .busqueda {
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* Botón de búsqueda */
 .busqueda-btn {
-    margin-left: 20px;
-    margin-right: 20px;
-
-    width: 10.5em;
-    height: 3.5em;
-
-    font-size: 15px;
-    font-weight: bold;
-
-    background-color: transparent;
-    color: rgb(255, 0, 0);
-    
-    border: 2px solid red;
-    border-radius: 100px;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 10.5em;
+  height: 3.5em;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: transparent;
+  color: rgb(255, 0, 0);
+  border: 2px solid red;
+  border-radius: 100px;
 }
 
+/* Efecto hover para el botón de búsqueda */
 .busqueda-btn:hover {
-    background-color: red;
-    color: white;
-    cursor: pointer;
+  background-color: red;
+  color: white;
+  cursor: pointer;
 }
 
+/* Input de búsqueda */
 #busqueda-input {
-    padding: 20px;
-    width: 60em;
-    border-width: 1px;
-    border: solid;
-    border-radius: 25px;
-    border-color: rgb(255, 0, 0);
+  padding: 20px;
+  width: 60em;
+  border-width: 1px;
+  border: solid;
+  border-radius: 25px;
+  border-color: rgb(255, 0, 0);
 }
 
-
+/* Imagen en la sección home */
 .home .contenido img{
-    max-width: 30rem;
-    text-align: center;
-    margin: 0 auto;
-
+  max-width: 30rem;
+  text-align: center;
+  margin: 0 auto;
 }
 
+/* Título en la sección home */
 .home .contenido h3 {
   font-size: 4rem;
   text-transform: uppercase;
   color: #fff;
 }
 
+/* Párrafo en la sección home */
 .home .contenido p {
   font-size: 1.7rem;
   line-height: 2;
@@ -67,126 +67,157 @@
   padding: 2rem 0;
 }
 
+/* Menú principal */
 .menu {
-    color: #fff;
+  color: #fff;
 }
 
+/* Contenedor de cada categoría del menú */
 .menu-categoria {
-    border: 2px solid #ff0000;
-    border-radius: 15px;
-    margin: 40px auto;
-    padding: 30px 20px;
-    max-width: 900px;
-    background-color: transparent;
+  border: 2px solid #ff0000;
+  border-radius: 15px;
+  margin: 40px auto;
+  padding: 30px 20px;
+  max-width: 900px;
+  background-color: transparent;
 }
 
+/* Título de la categoría */
 .categoria-titulo {
-    color: #ffffff;
-    font-size: 2.8rem;
-    text-align: center;
-    margin-bottom: 30px;
-    font-family: 'Raleway', sans-serif;
-    font-weight: bold;
+  color: #ffffff;
+  font-size: 2.8rem;
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
 }
 
+/* Lista de productos */
 .productos-lista {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
+/* Tarjeta de producto */
 .producto-card {
-    display: flex;
-    align-items: center;
-    border: 1.5px solid #fff;
-    border-radius: 12px;
-    padding: 18px 24px;
-    background: #222;
-    box-shadow: 0 2px 8px #0002;
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #fff;
+  border-radius: 12px;
+  padding: 18px 24px;
+  background: #222;
+  box-shadow: 0 2px 8px #0002;
 }
 
+/* Imagen del producto */
 .producto-img img {
-    width: 90px;
-    height: 90px;
-    object-fit: cover;
-    border-radius: 10px;
-    border: 1.5px solid #ff7b7b;
-    background: #111;
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1.5px solid #ff7b7b;
+  background: #111;
 }
 
+/* Información del producto */
 .producto-info {
-    display: flex;
-    flex-direction: column;
-    margin-left: 24px;
-    flex: 1;
-    font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  margin-left: 24px;
+  flex: 1;
+  font-size: 1.5rem;
 }
 
+/* Nombre del producto */
 .producto-nombre {
-    font-size: 1.4em;
-    color: #fff;
-    margin-bottom: 10px;
-    font-family: 'Raleway', sans-serif;
+  font-size: 1.4em;
+  color: #fff;
+  margin-bottom: 10px;
+  font-family: 'Raleway', sans-serif;
 }
 
+/* Contenedor de precios */
 .producto-precios {
-    display: flex;
-    gap: 40px;
-    font-size: 1.4em;
+  display: flex;
+  gap: 40px;
+  font-size: 1.4em;
 }
 
+/* Cada precio */
 .producto-precios div {
-    color: #ffbdbd;
-    text-align: center;
-    border-left: 1px solid #ff7b7b;
-    padding-left: 18px;
+  color: #ffbdbd;
+  text-align: center;
+  border-left: 1px solid #ff7b7b;
+  padding-left: 18px;
 }
 
+/* Primer precio sin borde izquierdo */
 .producto-precios div:first-child {
-    border-left: none;
-    padding-left: 0;
+  border-left: none;
+  padding-left: 0;
 }
 
+/* Estilo para el valor del precio */
 .producto-precios span {
-    display: block;
-    color: #fff;
-    font-size: 1.25em;
-    margin-top: 4px;
+  display: block;
+  color: #fff;
+  font-size: 1.25em;
+  margin-top: 4px;
 }
 
-/* Responsive */
+/* Compactar menú en móvil y resaltar borde rojo */
 @media (max-width: 700px) {
-    .menu-categoria {
-        padding: 15px 5px;
-    }
-    .producto-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    .producto-info {
-        margin-left: 0;
-    }
-    .producto-precios {
-        gap: 15px;
-    }
+  .menu-categoria {
+    padding: 8px 2px;
+    margin: 20px 2px;
+    background: rgba(20, 0, 0, 0.85); /* resalta el borde rojo */
+  }
+  .productos-lista {
+    gap: 12px;
+  }
+  .producto-card {
+    padding: 10px 8px;
+    border-radius: 10px;
+    margin: 0 2px;
+    box-shadow: none;
+  }
+  .producto-img img {
+    width: 70px;
+    height: 70px;
+  }
+  .producto-info {
+    font-size: 1.2rem;
+  }
+  .producto-nombre {
+    font-size: 1.1em;
+    margin-bottom: 6px;
+  }
+  .producto-precios {
+    gap: 8px;
+    font-size: 1em;
+  }
 }
+
+/* Contenedor del menú y filtros */
 .menu-contenedor {
   display: flex;
   gap: 0;
 }
 
+/* Responsive para el menú principal y contenedor */
 @media (max-width: 900px) {
   .menu-contenedor, .menu-principal {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    width: 100vw;
-    box-sizing: border-box;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100vw;
+  box-sizing: border-box;
   }
 }
 
+/* Filtros laterales */
 .filtros-lateral {
   width: 250px;
   background: transparent;
@@ -201,25 +232,33 @@
   border-radius: 10px;
   height: fit-content;
 }
+
+/* Bloque de cada filtro */
 .filtro-bloque {
   margin-bottom: 18px;
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
+
+/* Título de cada filtro */
 .filtro-titulo {
   font-weight: bold;
   margin-bottom: 6px;
 }
+
+/* Contenido principal del menú */
 .menu-principal {
   flex: 1;
   padding: 24px;
 }
 
+/* Espaciado para los checkboxes */
 input[type="checkbox"] {
   margin-right: 6px;
 }
 
+/* Botón para aplicar filtros */
 .aplicar-filtros {
   background: #ff0000;
   color: white;
@@ -230,49 +269,49 @@ input[type="checkbox"] {
   font-size: 1em;
 }
 
-/* Filtro precio*/
-
+/* Filtro de precio: slider */
 .filtro-precio-slider {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
 }
 
+/* Valor del precio en el filtro */
 .precio-valor {
-    font-size: 1.1em;
-    color: #fff;
-    font-weight: bold;
-    margin-bottom: 2px;
+  font-size: 1.1em;
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 2px;
 }
 
+/* Slider de precio */
 .filtro-precio-slider input[type="range"] {
-    width: 90%;
-    accent-color: #ff0000;
+  width: 90%;
+  accent-color: #ff0000;
 }
 
-/* RESET */
-
+/* Botón para resetear filtros */
 .reset-filtros {
-    width: 100%;
-    margin-top: 10px;
-    padding: 10px 0;
-    background: transparent;
-    color: #ff0000;
-    border: 2px solid #ff0000;
-    border-radius: 100px;
-    font-size: 1.2em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 0;
+  background: transparent;
+  color: #ff0000;
+  border: 2px solid #ff0000;
+  border-radius: 100px;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
 }
 .reset-filtros:hover {
-    background: #ff0000;
-    color: #fff;
+  background: #ff0000;
+  color: #fff;
 }
 
-
+/* Overlay para filtros en móvil */
 .filtros-overlay {
   display: none;
   position: fixed;
@@ -281,6 +320,8 @@ input[type="checkbox"] {
   background: rgba(0,0,0,0.5);
   z-index: 998;
 }
+
+/* Botón para mostrar filtros en móvil */
 .filtros-toggle {
   display: none;
   align-items: center;
@@ -306,37 +347,40 @@ input[type="checkbox"] {
   color: #fff;
 }
 
+/* Responsive: muestra el botón de filtros en móvil */
 @media (max-width: 900px) {
   .filtros-toggle {
-    display: flex;
-    width: 90vw;
-    margin: 18px auto 10px auto;
+  display: flex;
+  width: 90vw;
+  margin: 18px auto 10px auto;
   }
 }
+
+/* Responsive: filtros laterales como panel deslizable en móvil */
 @media (max-width: 900px) {
   #filtros-lateral {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: -100vw;
-    width: 85vw;
-    max-width: 350px;
-    height: 100vh;
-    background: #1a0000;
-    border-right: 2px solid #ff0000;
-    z-index: 999;
-    box-shadow: 4px 0 32px #000a;
-    padding: 32px 18px 18px 18px;
-    border-radius: 0 16px 16px 0;
-    overflow-y: auto;
-    transition: left 0.25s;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: -100vw;
+  width: 85vw;
+  max-width: 350px;
+  height: 100vh;
+  background: #1a0000;
+  border-right: 2px solid #ff0000;
+  z-index: 999;
+  box-shadow: 4px 0 32px #000a;
+  padding: 32px 18px 18px 18px;
+  border-radius: 0 16px 16px 0;
+  overflow-y: auto;
+  transition: left 0.25s;
   }
   #filtros-lateral.abierto {
-    left: 0;
-    animation: none;
+  left: 0;
+  animation: none;
   }
   .filtros-overlay.activo {
-    display: block;
+  display: block;
   }
 }
 

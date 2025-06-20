@@ -31,15 +31,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" type="image/png" href="images/logo.png">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/admin.css">
     <title>Rincon De Los 4 Diablitos</title>
 </head>
 <body>
 
-    <?php include_once "html/header.html"?> <!-- Encabezado del sitio -->
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/html/header.html'?> <!-- Encabezado del sitio -->
 
     <section class="login-section">
         <h2>Iniciar Sesión Administrador</h2>
@@ -61,10 +61,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ?>
     </section>
 
-    <?php include_once "html/footer.html"?> <!-- Pie de página del sitio -->
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/html/footer.html';?> <!-- Pie de página del sitio -->
 
     <!-- Scripts JS -->
-    <script src="js/script.js"></script>
+    <script src="../js/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 </body>
 </html>

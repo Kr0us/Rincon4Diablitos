@@ -1,37 +1,46 @@
+/* Contenedor principal de la sección de login */
 .login-section {
-    background: #fff;
-    color: #000;
-    max-width: 400px;
-    margin: 80px auto 40px auto;
-    padding: 30px 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #0005;
-    z-index: 1000;
-    position: relative;
+    background: #fff; /* Fondo blanco */
+    color: #000; /* Texto negro */
+    max-width: 400px; /* Ancho máximo */
+    margin: 80px auto 40px auto; /* Centrado vertical y horizontal */
+    padding: 30px 20px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 0 10px #0005; /* Sombra */
+    z-index: 1000; /* Prioridad de apilamiento */
+    position: relative; /* Posicionamiento relativo */
 }
+
+/* Título de la sección de login */
 .login-section h2 {
-    text-align: center;
-    margin-bottom: 20px;
+    text-align: center; /* Centrar texto */
+    margin-bottom: 20px; /* Espacio inferior */
 }
+
+/* Etiquetas del formulario de login */
 .login-form label {
-    display: block;
-    margin-top: 10px;
+    display: block; /* Mostrar en bloque */
+    margin-top: 10px; /* Espacio superior */
 }
+
+/* Campos de entrada del formulario de login */
 .login-form input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    width: 100%; /* Ancho completo */
+    padding: 8px; /* Espaciado interno */
+    margin-top: 5px; /* Espacio superior */
+    margin-bottom: 15px; /* Espacio inferior */
+    border-radius: 5px; /* Bordes redondeados */
+    border: 1px solid #ccc; /* Borde gris claro */
 }
+
+/* Botón del formulario de login */
 .login-form button {
-    width: 100%;
-    padding: 10px;
-    background: #a00;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
+    width: 100%; /* Ancho completo */
+    padding: 10px; /* Espaciado interno */
+    background: #a00; /* Fondo rojo oscuro */
+    color: #fff; /* Texto blanco */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    font-weight: bold; /* Texto en negrita */
+    cursor: pointer; /* Cursor tipo puntero */
 }
