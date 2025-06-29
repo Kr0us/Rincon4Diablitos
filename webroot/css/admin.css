@@ -1,9 +1,9 @@
 /* Contenedor principal de la sección de login */
 .login-section {
-    background: #fff; /* Fondo blanco */
-    color: #000; /* Texto negro */
-    max-width: 400px; /* Ancho máximo */
-    margin: 80px auto 40px auto; /* Centrado vertical y horizontal */
+    background: #111; /* Fondo negro */
+    color: #fff; /* Texto blanco */
+    max-width: 600px; /* Ancho máximo */
+    margin: 200px auto 190px auto; /* Centrado vertical y horizontal */
     padding: 30px 20px; /* Espaciado interno */
     border-radius: 10px; /* Bordes redondeados */
     box-shadow: 0 0 10px #0005; /* Sombra */
@@ -13,34 +13,58 @@
 
 /* Título de la sección de login */
 .login-section h2 {
+    font-size: 2rem;
     text-align: center; /* Centrar texto */
     margin-bottom: 20px; /* Espacio inferior */
+    
 }
 
 /* Etiquetas del formulario de login */
 .login-form label {
+    font-size: 1.5rem;
     display: block; /* Mostrar en bloque */
     margin-top: 10px; /* Espacio superior */
 }
 
 /* Campos de entrada del formulario de login */
 .login-form input {
-    width: 100%; /* Ancho completo */
-    padding: 8px; /* Espaciado interno */
-    margin-top: 5px; /* Espacio superior */
-    margin-bottom: 15px; /* Espacio inferior */
-    border-radius: 5px; /* Bordes redondeados */
-    border: 1px solid #ccc; /* Borde gris claro */
+    font-size: 1.5rem;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #555;
+    background-color: #222;
+    color: #fff;
+}
+
+.login-form input:focus {
+    border-color: #ff0000;
+    outline: none;
 }
 
 /* Botón del formulario de login */
 .login-form button {
-    width: 100%; /* Ancho completo */
-    padding: 10px; /* Espaciado interno */
-    background: #a00; /* Fondo rojo oscuro */
-    color: #fff; /* Texto blanco */
-    border: none; /* Sin borde */
-    border-radius: 5px; /* Bordes redondeados */
-    font-weight: bold; /* Texto en negrita */
-    cursor: pointer; /* Cursor tipo puntero */
+    width: 100%;
+    padding: 12px;
+    background: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-form button:hover {
+    background: #b30000;
+}
+
+@media (max-width: 600px) {
+  .login-section {
+    margin: 100px 20px;
+    padding: 20px 15px;
+  }
 }
