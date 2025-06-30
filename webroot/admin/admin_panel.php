@@ -33,8 +33,8 @@ if (!isset($_SESSION["admin"])) {
             </div>
 
             <div class="col-md-6">
-                <a href="#" class="btn btn-secondary w-100 p-4 disabled">
-                    👨‍🍳 Gestión de empleados (próximamente)
+                <a href="admin_empleados.php" class="btn btn-secondary w-100 p-4">
+                    👨‍🍳 Gestión de empleados
                 </a>
             </div>
 
