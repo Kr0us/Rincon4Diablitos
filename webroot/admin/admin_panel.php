@@ -21,32 +21,26 @@ if (!isset($_SESSION["admin"])) {
         <div class="row g-4">
 
             <div class="col-md-6">
-                <a href="admin_menu_agregar.php" class="btn btn-danger w-100 p-4">
-                    ➕ Agregar nuevo producto al menú
+                <a href="admin_ingredientes.php" class="btn btn-danger w-100 p-4">
+                    🧂 Ver y Editar Ingredientes del Menú
                 </a>
             </div>
 
             <div class="col-md-6">
                 <a href="admin_menu_listar.php" class="btn btn-warning w-100 p-4">
-                    🧾 Ver y editar productos del menú
+                    🧾 Ver y Editar Productos del Menú
                 </a>
             </div>
 
             <div class="col-md-6">
                 <a href="admin_empleados.php" class="btn btn-secondary w-100 p-4">
-                    👨‍🍳 Gestión de empleados
-                </a>
-            </div>
-
-            <div class="col-md-6">
-                <a href="#" class="btn btn-secondary w-100 p-4 disabled">
-                    🧂 Gestión de ingredientes (próximamente)
+                    👨‍🍳 Gestión de Empleados
                 </a>
             </div>
 
             <div class="col-md-6">
                 <a href="ver_opiniones.php" class="btn btn-info w-100 p-4">
-                    💬 Ver opiniones de clientes
+                    💬 Ver Opiniones de Clientes
                 </a>
             </div>
 

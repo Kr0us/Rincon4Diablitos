@@ -73,12 +73,12 @@ foreach ($ings as $row) {
 </head>
 <body class="bg-dark text-light">
   <div class="container mt-3">
+    <h1 class="text-center mb-4">Menú Disponible</h1>
 
     <!-- Enlaces superiores -->
     <div class="d-flex justify-content-between mb-3">
       <div>
-        <a href="logout.php" class="btn btn-outline-light">🔒 Cerrar sesión</a>
-        <a href="admin_panel.php" class="btn btn-outline-light">⬅️ Panel</a>
+        <a href="admin_panel.php" class="btn btn-outline-light">⬅️ Volver al Panel</a>
       </div>
       <a href="admin_menu_agregar.php" class="btn btn-success">➕ Agregar producto</a>
     </div>

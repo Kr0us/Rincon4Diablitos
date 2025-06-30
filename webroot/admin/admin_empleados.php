@@ -5,19 +5,6 @@ if (!isset($_SESSION["admin"])) {
     exit;
 }
 
-// ...no conexión a base de datos, solo plantilla...
-// Empleados de prueba
-$empleados = [
-    [
-        "id" => 1,
-        "nombre" => "Juan Pérez",
-        "telefono" => "+56 9 1234 5678",
-        "local" => "Sucursal Peñalolén",
-        "rol" => "Cocinero"
-    ],
-    // ...puedes agregar más empleados aquí...
-];
-
 require_once realpath(__DIR__ . "/..") . "/conexion.php";
 $conn_local = create_conection("RINCON");
 if (is_null($conn_local)) {
