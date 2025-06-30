@@ -1,6 +1,4 @@
 <?php
-    
-
     // ---------- CONEXIÓN A LA BASE DE DATOS ----------
     require_once("conexion.php");
 
@@ -14,12 +12,13 @@
     // Obtener tamaños disponibles
     $tamanos = execute_query($conn,"SELECT id_tamano, nombre_tamano FROM tamano;");
     // Obtener categorías disponibles
-    $categorias = execute_query($conn,"SELECT id_categoria, nombre_categoria FROM categoria;");
+    $categorias = execute_query($conn,"SELECT id_categoria, nombre_categoria FROM categoria WHERE id_categoria != 0;");
     // Obtener menú con nombre y categoría
     $menu = execute_query($conn,"
                                 SELECT m.nombre_menu, c.nombre_categoria 
                                 FROM menu m
-                                INNER JOIN categoria c ON m.id_categoria = c.id_categoria");
+                                INNER JOIN categoria c ON m.id_categoria = c.id_categoria
+                                WHERE m.id_categoria != 0;");
     
     // Bucle vacío, posiblemente para futuras operaciones
     for ($i=0; $i<count($menu); $i++) {
