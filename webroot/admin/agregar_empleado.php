@@ -49,7 +49,9 @@ $locales = execute_query($conn_local, "SELECT id_local, direccion FROM locales W
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-dark text-light">
+
     <div class="container mt-5">
+
         <h1 class="mb-4">➕ Agregar Empleado</h1>
         <form method="POST" action="agregar_empleado.php">
             <div class="mb-3">

@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-dark text-light">
-    
+
   <div class="container mt-5">
     <h2>✏️ Editar Producto</h2>
     <form method="POST" enctype="multipart/form-data" class="row g-3">

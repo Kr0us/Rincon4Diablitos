@@ -26,10 +26,19 @@ $ingredientes = execute_query($conn_local, "SELECT id_ingrediente, nombre_ingred
 </head>
 <body class="bg-dark text-light">
     <div class="container mt-5">
+
+        <div class="row">
+            <div class="col-auto">
+                <a href="admin_panel.php">
+                    <img src="../images/logo.png" alt="Logo del Local" class="logo-img">
+                </a>
+            </div>
+        </div>
+
         <h1 class="text-center mb-4">Gestión de Ingredientes</h1>
         <div class="d-flex justify-content-between mb-4">
             <a href="admin_panel.php" class="btn btn-outline-light">⬅️ Volver al Panel</a>
-            <a href="agregar_ingrediente.php" class="btn btn-success">➕ Agregar Ingrediente</a>
+            <a href="agregar_ingrediente.php" class="btn btn-success">➕ Agregar Ingredientes</a>
         </div>
         <?php foreach ($ingredientes as $ing): ?>
             <div class="d-flex justify-content-between align-items-center bg-secondary rounded p-3 mb-3">
@@ -44,7 +53,13 @@ $ingredientes = execute_query($conn_local, "SELECT id_ingrediente, nombre_ingred
         <?php endforeach; ?>
     </div>
 
-    <script src="../js/admin_ingredientes.js"></script>
-
+    <script>
+        function eliminarIngrediente() {
+            if (confirm("¿Seguro que Eliminar este Ingrediente?")) {
+                // Si presiona "Aceptar" (Sí)
+                window.location.href = "eliminar_ingrediente.php?id=<?=htmlspecialchars($ing['id_ingrediente'])?>";
+            }
+        }
+    </script>
 </body>
 </html>

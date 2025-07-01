@@ -28,6 +28,16 @@ $empleados = execute_query($conn_local, "SELECT e.id_empleado, e.nombre_empleado
 </head>
 <body class="bg-dark text-light">
     <div class="container mt-5">
+
+        <div class="row">
+            <div class="col-auto">
+                <a href="admin_panel.php">
+                    <img src="../images/logo.png" alt="Logo del Local" class="logo-img">
+                </a>
+            </div>
+        </div>
+
+
         <h1 class="text-center mb-4">Gestión de Empleados</h1>
         <div class="d-flex justify-content-between mb-4">
             <a href="admin_panel.php" class="btn btn-outline-light">⬅️ Volver al Panel</a>
@@ -42,11 +52,20 @@ $empleados = execute_query($conn_local, "SELECT e.id_empleado, e.nombre_empleado
                     <div><strong>Rol:</strong> <?= htmlspecialchars($emp["nombre_rol"]) ?></div>
                 </div>
                 <div class="d-flex flex-column gap-2">
-                    <a href="editar_empleado.php?id=<?=htmlspecialchars($emp['id_empleado'])?>" class="btn btn-warning mb-2">Editar Información</a>
-                    <button class="btn btn-danger">Eliminar Empleado</button>
+                    <a href="editar_empleado.php?id_empleado=<?=htmlspecialchars($emp['id_empleado']);?>" class="btn btn-warning mb-2">Editar Información</a>
+                    <button onclick="eliminarEmpleado()" class="btn btn-danger">Eliminar Empleado</button>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
+
+     <script>
+        function eliminarEmpleado() {
+            if (confirm("¿Seguro que desea Eliminar al Empleado?")) {
+                // Si presiona "Aceptar" (Sí)
+                window.location.href = "eliminar_empleado.php?id=<?=htmlspecialchars($emp['id_empleado'])?>";
+            }
+        }
+     </script>
 </body>
 </html>

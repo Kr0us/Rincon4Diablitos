@@ -28,6 +28,16 @@ $data = execute_query($conn, "
   ORDER BY c.nombre_categoria, m.id_menu, t.id_tamano
 ");
 
+// Calcular el precio máximo
+$precioMax = 0;
+foreach ($data as $r) {
+    if (isset($r['precio']) && $r['precio'] > $precioMax) {
+        $precioMax = $r['precio'];
+    }
+}
+// Si no hay productos, pon un valor por defecto
+if ($precioMax < 1000) $precioMax = 10000;
+
 // Agrupar productos por categoría y por producto
 $productosPorCategoria = [];
 foreach ($data as $r) {
@@ -104,7 +114,7 @@ foreach ($data as $r) {
                 <span class="filtro-titulo">Precio</span>
                 <div class="filtro-precio-slider">
                     <div class="precio-valor" id="precio-slider-valor">$0</div>
-                    <input type="range" id="precio-slider" min="0" max="6000" step="100" value="0">
+                    <input type="range" id="precio-slider" min="0" max="<?= $precioMax ?>" step="100" value="<?= $precioMax ?>">
                 </div>
             </div>
             <!-- Filtro por categoría -->
