@@ -12,6 +12,8 @@ if (!isset($_SESSION["admin"])) {
     <meta charset="UTF-8">
     <title>Panel de Administración</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/footer_admin.css">
+    
 </head>
 <body class="bg-dark text-light">
     <div class="container mt-5">
@@ -60,6 +62,11 @@ if (!isset($_SESSION["admin"])) {
 
         </div>
     </div>
+
+    
+    <!-- FOOTER -->
+    <?php include_once "../html/footer.html" ?>
+
 
 </body>
 </html>
