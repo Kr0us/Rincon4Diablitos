@@ -1,29 +1,53 @@
 <?php
-    // ---------- CONEXIÓN A LA BASE DE DATOS ----------
-    require_once("conexion.php");
+require_once("conexion.php");
+$conn = create_conection("RINCON");
+if (is_null($conn)) {
+    http_response_code(500);
+    exit;
+}
 
-    $conn = create_conection("RINCON");
-    if (is_null($conn)) {
-        http_response_code(500);
-        exit;
+// Traer categorías y tamaños para los filtros
+$categorias = execute_query($conn, "SELECT * FROM categoria WHERE id_categoria != 0 ORDER BY nombre_categoria");
+$tamanos = execute_query($conn, "SELECT * FROM tamano ORDER BY id_tamano");
+
+// Traer productos, categorías, tamaños y precios en una sola consulta
+$data = execute_query($conn, "
+  SELECT
+    m.id_menu,
+    m.nombre_menu,
+    m.foto_menu,
+    c.id_categoria,
+    c.nombre_categoria,
+    t.nombre_tamano,
+    mt.precio
+  FROM menu m
+    INNER JOIN categoria    c  ON m.id_categoria = c.id_categoria
+    LEFT  JOIN menu_tamano  mt ON m.id_menu       = mt.id_menu
+    LEFT  JOIN tamano       t  ON mt.id_tamano     = t.id_tamano
+  WHERE m.id_categoria != 0
+  ORDER BY c.nombre_categoria, m.id_menu, t.id_tamano
+");
+
+// Agrupar productos por categoría y por producto
+$productosPorCategoria = [];
+foreach ($data as $r) {
+    $cat = $r['nombre_categoria'];
+    $id  = $r['id_menu'];
+    if (!isset($productosPorCategoria[$cat])) $productosPorCategoria[$cat] = [];
+    if (!isset($productosPorCategoria[$cat][$id])) {
+        $productosPorCategoria[$cat][$id] = [
+            'nombre_menu'   => $r['nombre_menu'],
+            'foto_menu'     => $r['foto_menu'],
+            'precios'       => []
+        ];
     }
-    
-    // ---------- CONSULTAS PRINCIPALES ----------
-    // Obtener tamaños disponibles
-    $tamanos = execute_query($conn,"SELECT id_tamano, nombre_tamano FROM tamano;");
-    // Obtener categorías disponibles
-    $categorias = execute_query($conn,"SELECT id_categoria, nombre_categoria FROM categoria WHERE id_categoria != 0;");
-    // Obtener menú con nombre y categoría
-    $menu = execute_query($conn,"
-                                SELECT m.nombre_menu, c.nombre_categoria 
-                                FROM menu m
-                                INNER JOIN categoria c ON m.id_categoria = c.id_categoria
-                                WHERE m.id_categoria != 0;");
-    
-    // Bucle vacío, posiblemente para futuras operaciones
-    for ($i=0; $i<count($menu); $i++) {
-        
+    if ($r['nombre_tamano']) {
+        $productosPorCategoria[$cat][$id]['precios'][] = [
+            'nombre_tamano' => $r['nombre_tamano'],
+            'precio'        => $r['precio']
+        ];
     }
+}
 ?>
 
 <!DOCTYPE html>
@@ -107,36 +131,38 @@
         <main class="menu-principal">
             <?php foreach($categorias as $categoria) { ?>
             <section class="menu-categoria">
-                <!-- Título de la categoría -->
                 <h2 class="categoria-titulo"><?= $categoria["nombre_categoria"]?></h2>
-                <?php  foreach($menu as $plato) {
-                    // Mostrar solo los platos de la categoría actual
-                    if(strcmp($plato["nombre_categoria"], $categoria["nombre_categoria"]) == 0) {
-                    $nombre = $plato['nombre_menu'];
-                    $cat = $categoria["nombre_categoria"];
-                    // Obtener propiedades del menú (tamaños, precios, etc.)
-                    $plato["propiedades"] = execute_query($conn, "CALL obtener_propiedades_de_menu('$nombre', '$cat');");     
-                ?>
                 <div class="productos-lista">
-                <div class="producto-card">
-                    <div class="producto-img">
-                        <!-- Imagen del producto según la categoría -->
-                        <img src="images/<?=$categoria["nombre_categoria"];?>/<?=trim(strtolower($categoria["nombre_categoria"]));?>.jpg" alt="<?= $plato["nombre_menu"]?>">
-                    </div>
-                    <div class="producto-info">
-                        <div class="producto-nombre"><?= $plato["nombre_menu"]?></div>
-                        <div class="producto-precios">
-                            <!-- Mostrar precios por tamaño -->
-                            <?php foreach($plato["propiedades"] as $prop) { ?>
-                                <div><?= $prop["nombre_tamano"]; ?><br><span>$<?= $prop["precio"]; ?></span></div>
-                            <?php } ?>
+                <?php
+                    $catName = $categoria["nombre_categoria"];
+                    if (isset($productosPorCategoria[$catName])) {
+                        foreach($productosPorCategoria[$catName] as $plato) {
+                ?>
+                    <div class="producto-card">
+                        <div class="producto-img">
+                            <?php if ($plato["foto_menu"]): ?>
+                                <img src="<?= htmlspecialchars($plato["foto_menu"]) ?>" alt="<?= htmlspecialchars($plato["nombre_menu"]) ?>">
+                            <?php else: ?>
+                                <img src="images/no-image.png" alt="Sin imagen">
+                            <?php endif; ?>
+                        </div>
+                        <div class="producto-info">
+                            <div class="producto-nombre"><?= htmlspecialchars($plato["nombre_menu"]) ?></div>
+                            <div class="producto-precios">
+                                <?php foreach($plato["precios"] as $prop) { ?>
+                                    <div><?= htmlspecialchars($prop["nombre_tamano"]); ?><br><span>$<?= number_format($prop["precio"],0,',','.') ?></span></div>
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <?php }} ?>
+                <?php
+                        }
+                    }
+                ?>
                 </div>
             </section>
-            <?php } ?>  
+            <?php } 
+            ?>
         </main>
     </section>
 

@@ -8,12 +8,25 @@ $empleados = execute_query($conn, "SELECT id_empleado, nombre_empleado FROM empl
 
 // 2) Si vino POST, haz el INSERT en opiniones:
 if ($_SERVER['REQUEST_METHOD']==='POST') {
-    // ... recopilar nombre, email, estrellas, mensaje, id_empleado ...
+    
+    $nombre      = trim($_POST['nombre']     ?? '');
+    $correo      = trim($_POST['email']      ?? '');
+    $estrellas   = (int)  ($_POST['estrellas'] ?? 0);
+    $comentario  = trim($_POST['mensaje']    ?? '');
+    $id_empleado = (int)  ($_POST['id_empleado'] ?? 0);
+
     $stmt = $conn->prepare(
       "INSERT INTO opiniones (nombre_cliente, correo, estrellas, comentario, id_empleado)
        VALUES (?, ?, ?, ?, ?)"
     );
-    $stmt->bind_param('ssisi', $nombre, $correo, $estrellas, $comentario, $id_empleado);
+    $stmt->bind_param(
+    'ssisi',
+    $nombre,
+    $correo,
+    $estrellas,
+    $comentario,
+    $id_empleado
+    );
     $stmt->execute();
     header("Location: opinion.php?ok=1");
     exit;
@@ -69,7 +82,12 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
                     <!-- Campo para email -->
                     <input data-aos="fade-up" data-aos-delay="300" type="email" name="email" placeholder="Correo electronico" class="cajas" required>
                     <!-- Campo para puntuacion -->
-                    <input data-aos="fade-up" data-aos-delay="400" type="number" name="estrellas" min="1" max="5" placeholder="Puntuacion (1-5 estrellas)" class="cajas" required>
+                    <select data-aos="fade-up" data-aos-delay="400" name="estrellas" class="cajas" required>
+                        <option value="">Puntuación (1-5 estrellas)</option>
+                        <?php for ($i = 1; $i <= 5; $i++): ?>
+                            <option value="<?= $i ?>"><?= str_repeat('⭐', $i) ?></option>
+                        <?php endfor; ?>
+                    </select>
                     <!-- Selector de empleado que atendió -->
                     <select data-aos="fade-up" data-aos-delay="600" name="id_empleado" class="cajas" required>
                         <option value="">Selecciona el empleado</option>

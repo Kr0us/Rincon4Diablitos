@@ -1,0 +1,9 @@
+.container mt-3{
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 80px; /* Ajusta el tamaño según lo necesites */
+    height: auto;
+}   

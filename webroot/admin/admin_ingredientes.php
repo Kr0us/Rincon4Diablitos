@@ -38,18 +38,13 @@ $ingredientes = execute_query($conn_local, "SELECT id_ingrediente, nombre_ingred
                 </div>
                 <div class="d-flex flex-column gap-2">
                     <a href="editar_ingrediente.php?id_ingrediente=<?=htmlspecialchars($ing['id_ingrediente'])?>" class="btn btn-warning mb-2">Editar</a>
-                    <script>
-                        function eliminarIngrediente() {
-                            if (confirm("¿Seguro que desea continuar?")) {
-                                // Si presiona "Aceptar" (Sí)
-                                window.location.href = "eliminar_ingrediente.php?id=<?=htmlspecialchars($ing['id_ingrediente'])?>";
-                            }
-                        }
-                    </script>
                     <button onclick="eliminarIngrediente()" class="btn btn-danger">Eliminar</button>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
+
+    <script src="../js/admin_ingredientes.js"></script>
+
 </body>
 </html>

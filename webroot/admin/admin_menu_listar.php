@@ -58,18 +58,6 @@ foreach ($ings as $row) {
   <meta charset="UTF-8">
   <title>Gestión de Menú</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script>
-    function confirmDeleteProduct(id) {
-      if (!confirm("¿Seguro que deseas eliminar este producto?")) return;
-      fetch("eliminar_menu.php?id=" + id, { method: "GET" })
-        .then(() => location.reload());
-    }
-    function confirmDeleteCategory(catId) {
-      if (!confirm("¿Eliminar esta categoría Y TODOS sus productos?")) return;
-      fetch("eliminar_categoria.php?id_categoria=" + catId, { method: "GET" })
-        .then(() => location.reload());
-    }
-  </script>
 </head>
 <body class="bg-dark text-light">
   <div class="container mt-3">
@@ -139,5 +127,10 @@ foreach ($ings as $row) {
     ?>
 
   </div>
+
+
+  <script src="../js/admin_menu_listar.js"></script>
+
+
 </body>
 </html>

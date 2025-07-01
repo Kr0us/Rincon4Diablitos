@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["nombre_ingrediente"])
     $resultado = $stmt->get_result();
 
     header("Location: admin_ingredientes.php");
+    exit;
 }
 
 ?>
